@@ -5,8 +5,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="learning-jpa">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
-        <mapping-file>META-INF/consultas.xml</mapping-file>
+        <class>model.basic.User</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver"
