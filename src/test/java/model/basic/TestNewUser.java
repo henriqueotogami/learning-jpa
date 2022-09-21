@@ -20,6 +20,8 @@ public class TestNewUser {
             factoryConnectionDatabase.persist(newUser);
             factoryConnectionDatabase.getTransaction().commit();
 
+            System.out.println("New User ID: " + newUser.getId());
+
             factoryConnectionDatabase.close();
             persistenceManager.close();
         } catch (Exception exception) {
