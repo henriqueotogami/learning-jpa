@@ -6,19 +6,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
-//@Table(name = "people")
+@Table(name = "people")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "person_code", nullable = false)
+    @Column(name = "person_code", nullable = false)
     private Long id;
 
-//    @Column(name = "person_name", nullable = false)
+    @Column(name = "person_name", nullable = false)
     private String name;
 
+    @Transient
     private String email;
 
     public User() { }

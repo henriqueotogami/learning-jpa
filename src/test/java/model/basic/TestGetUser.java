@@ -11,7 +11,7 @@ public class TestGetUser {
         EntityManagerFactory createConnectionDatabase = Persistence.createEntityManagerFactory("course_java");
         EntityManager databaseConnected = createConnectionDatabase.createEntityManager();
 
-        User user = databaseConnected.find(User.class, 1);
+        User user = databaseConnected.find(User.class, 1L);
         System.out.println("User found: " + user.getName());
 
         databaseConnected.close();

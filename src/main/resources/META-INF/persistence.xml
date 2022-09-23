@@ -5,10 +5,10 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
     <persistence-unit name="course_java">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>model.model</class>
+        <class>model.basic.User</class>
 
         <properties>
-            <property name="jakarta.persistence.jdbc.driver"    value="com.mysql.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.driver"    value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url"       value="jdbc:mysql://localhost:3306/course_java"/>
             <property name="jakarta.persistence.jdbc.user"      value="root"/>
             <property name="jakarta.persistence.jdbc.password"  value="fenix7841"/>

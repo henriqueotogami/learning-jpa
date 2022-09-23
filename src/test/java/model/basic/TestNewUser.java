@@ -14,7 +14,7 @@ public class TestNewUser {
             EntityManager factoryConnectionDatabase = persistenceManager.createEntityManager();
 
             User newUser = new User("Henrique Otogami", "h-otogami@icloud.com");
-//            newUser.setId(1L);
+            newUser.setId(1L);
 
             factoryConnectionDatabase.getTransaction().begin();
             factoryConnectionDatabase.persist(newUser);
