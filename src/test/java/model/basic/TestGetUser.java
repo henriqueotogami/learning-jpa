@@ -8,7 +8,8 @@ public class TestGetUser {
 
     public static void main(String[] args) {
 
-        EntityManagerFactory createConnectionDatabase = Persistence.createEntityManagerFactory("course_java");
+        final String databaseName = "course_java";
+        EntityManagerFactory createConnectionDatabase = Persistence.createEntityManagerFactory(databaseName);
         EntityManager databaseConnected = createConnectionDatabase.createEntityManager();
 
         User user = databaseConnected.find(User.class, 1L);
