@@ -1,9 +1,9 @@
-package model.basic;
+package model.basic.query;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
+import model.basic.User;
+import model.database.jpa.PersistenceEntityManager;
 
 import java.util.List;
 
@@ -11,17 +11,17 @@ public class TestGetUsers {
 
     public static void main(String[] args) {
 
-        final String databaseName = "course_java";
-        EntityManagerFactory createConnectionDatabase = Persistence.createEntityManagerFactory(databaseName);
-        EntityManager databaseConnected = createConnectionDatabase.createEntityManager();
+        System.out.println("TestGetUsers: BEGIN");
+        PersistenceEntityManager createEntityConnection = new PersistenceEntityManager();
+        createEntityConnection.createConnection();
 
-        executeQueryOne(databaseConnected);
+        executeQueryOne(createEntityConnection.getConnectionDatabase());
         System.out.println("---------------------------------------");
         System.out.println("---------------------------------------");
-        executeQueryTwo(databaseConnected);
+        executeQueryTwo(createEntityConnection.getConnectionDatabase());
 
-        databaseConnected.close();
-        createConnectionDatabase.close();
+        createEntityConnection.closeConnection();
+        System.out.println("TestGetUsers: END");
     }
 
     private static void executeQueryOne(final EntityManager databaseConnected) {

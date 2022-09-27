@@ -1,4 +1,4 @@
-package model.create;
+package model.database.jdbc;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class CreateDataBaseFactoryConnection {
+public class DatabaseConnectivityManager {
 
     public static Connection getConnection(){
         try {
@@ -27,7 +27,7 @@ public class CreateDataBaseFactoryConnection {
     private static Properties getProperties() throws IOException {
         Properties properties = new Properties();
         String fileDirectory = "/connection.properties";
-        properties.load(CreateDataBaseFactoryConnection.class.getResourceAsStream(fileDirectory));
+        properties.load(DatabaseConnectivityManager.class.getResourceAsStream(fileDirectory));
         return properties;
     }
 }
