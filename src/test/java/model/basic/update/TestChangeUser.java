@@ -18,6 +18,9 @@ public class TestChangeUser {
             case 2:
                 secondOptionToUpdate();
                 break;
+            case 3:
+                thirdOptionToUpdate();
+                break;
         }
         System.out.println("TestChangeUser - END");
     }
@@ -85,5 +88,35 @@ public class TestChangeUser {
 
         int letterIndexRandom = (int) (Math.random() * (ALPHABET.length-1));
         return ALPHABET[letterIndexRandom];
+    }
+
+    private static void thirdOptionToUpdate(){
+
+        System.out.println("TestChangeUser - thirdOptionToUpdate(): BEGIN");
+        PersistenceEntityManager createEntityConnection = new PersistenceEntityManager();
+        createEntityConnection.createConnection();
+
+        createEntityConnection.getConnectionDatabase().getTransaction().begin();
+        final User updateUser = createEntityConnection.getConnectionDatabase().find(User.class, 1L);
+        System.out.println("Old user: " + updateUser.getName() + " | ID: " + updateUser.getId());
+        System.out.println("Old e-mail: " + updateUser.getEmail());
+
+//        A terceira opcao utiliza o método de "destacar" o usuario atual do banco de dados
+//        para inserir um novo usuario atualizado no mesmo lugar.
+        createEntityConnection.getConnectionDatabase().detach(updateUser);
+
+
+        final String letterRandom = generateRandomLetter();
+        final String userNameUpdated = "Henrique Otog" + letterRandom + "m1";
+        final String userEmailUpdated = "hen-otog" + letterRandom + "m1@icloud.com";
+
+        System.out.println("User updated: ".concat(userNameUpdated));
+        System.out.println("E-mail updated: ".concat(userEmailUpdated));
+        updateUser.setName(userNameUpdated);
+        updateUser.setEmail(userEmailUpdated);
+
+        createEntityConnection.getConnectionDatabase().getTransaction().commit();
+        createEntityConnection.closeConnection();
+        System.out.println("TestChangeUser - thirdOptionToUpdate(): END");
     }
 }
