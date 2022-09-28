@@ -11,8 +11,8 @@ public class TestNewUser {
             PersistenceEntityManager createEntityConnection = new PersistenceEntityManager();
             createEntityConnection.createConnection();
 
-            User newUser = new User("Henrique Otogami", "h-otogami@icloud.com");
-            newUser.setId(1L);
+            User newUser = new User("VICTOR Otogami", "h-otogami@icloud.com");
+            newUser.setId(2L);
 
             createEntityConnection.getConnectionDatabase().getTransaction().begin();
             createEntityConnection.getConnectionDatabase().persist(newUser);

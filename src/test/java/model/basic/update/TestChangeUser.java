@@ -9,7 +9,7 @@ public class TestChangeUser {
 
     public static void main(String[] args) {
         System.out.println("TestChangeUser - BEGIN");
-        System.out.println("TestChangeUser - Insert the option to update (1 or 2): ");
+        System.out.println("TestChangeUser - Insert the option to update (1 | 2 | 3): ");
         Scanner scanner = new Scanner(System.in);
         switch (scanner.nextInt()) {
             case 1:
