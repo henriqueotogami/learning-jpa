@@ -4,7 +4,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
+import model.database.jdbc.DatabaseConnectivityManager;
 
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.List;
 
 public class DataAccessObject<Entity> {
@@ -98,6 +101,26 @@ public class DataAccessObject<Entity> {
         createdQuery.setMaxResults(quantityUsers);
         createdQuery.setFirstResult(indexUserDisplacement);
         return createdQuery.getResultList();
+    }
+
+    public boolean createTable(final String tableName, final String sqlCommand){
+        boolean isTableCreated = false;
+        final String persistenceQuery = "SELECT entity FROM " + getEntityClass().getName() + " entity";
+        try {
+            isTableCreated = (getConnectionDatabase().createQuery(persistenceQuery, getEntityClass()).getResultList().size() > 0);
+            System.out.println("DataAccessObject - createTable(): This entity already exists in the database.");
+        } catch (final Exception exception) {
+            System.out.println("DataAccessObject - createTable(): This entity doesn't exist in the database.");
+            System.out.println("DataAccessObject - createTable(): Starting the attempt to create the entity in the database.");
+            getConnectionDatabase().persist(sqlCommand);
+            isTableCreated = true;
+            getConnectionDatabase().createQuery(persistenceQuery, getEntityClass());
+            if(isTableCreated) {
+                System.out.println("DataAccessObject - createTable(): Creation of the entity in the database performed successfully.");
+            }
+        }
+        System.out.println(tableName + " table created successfully.");
+        return isTableCreated;
     }
 
     public void closeConnectionDatabase(){
