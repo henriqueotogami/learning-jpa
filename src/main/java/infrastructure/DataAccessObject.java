@@ -4,10 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
-import model.database.jdbc.DatabaseConnectivityManager;
 
-import java.sql.Connection;
-import java.sql.Statement;
 import java.util.List;
 
 public class DataAccessObject<Entity> {
@@ -46,6 +43,9 @@ public class DataAccessObject<Entity> {
         try{
             setTargetDatabaseName("course_java");
             setConnectionFactory(Persistence.createEntityManagerFactory(getTargetDatabaseName()));
+            if(getConnectionFactory().isOpen()) {
+                System.out.println("First database connection successfully.");
+            }
         } catch (Exception exception) {
             // Fazer login -> log4j
         }
@@ -85,25 +85,25 @@ public class DataAccessObject<Entity> {
         return this;
     }
 
-    public List<Entity> getAllUsers() {
-        final int defaultQuantityUsers = 10;
-        final int defaultUserDisplacement = 0;
-        return this.getAllUsers(defaultQuantityUsers, defaultUserDisplacement);
+    public List<Entity> getAllStorageItems() {
+        final int defaultQuantityItems = 10;
+        final int defaultItemDisplacement = 0;
+        return this.getAllStorageItems(defaultQuantityItems, defaultItemDisplacement);
     }
 
-    public List<Entity> getAllUsers(final int quantityUsers, final int indexUserDisplacement) {
+    public List<Entity> getAllStorageItems(final int quantityItems, final int indexItemDisplacement) {
         if(getEntityClass() == null){
-            throw new UnsupportedOperationException("DataAccessObject - getAllUsers: Failed. Class is null.");
+            throw new UnsupportedOperationException("DataAccessObject - getAllStorageItems: Failed. Class is null.");
         }
 
         final String persistenceQuery = "SELECT entity FROM " + getEntityClass().getName() + " entity";
         TypedQuery<Entity> createdQuery = getConnectionDatabase().createQuery(persistenceQuery, getEntityClass());
-        createdQuery.setMaxResults(quantityUsers);
-        createdQuery.setFirstResult(indexUserDisplacement);
+        createdQuery.setMaxResults(quantityItems);
+        createdQuery.setFirstResult(indexItemDisplacement);
         return createdQuery.getResultList();
     }
 
-    public boolean createTable(final String tableName, final String sqlCommand){
+    public boolean createTable(final String tableName, final String sqlCommand, final Class classInstance){
         boolean isTableCreated = false;
         final String persistenceQuery = "SELECT entity FROM " + getEntityClass().getName() + " entity";
         try {
@@ -112,7 +112,7 @@ public class DataAccessObject<Entity> {
         } catch (final Exception exception) {
             System.out.println("DataAccessObject - createTable(): This entity doesn't exist in the database.");
             System.out.println("DataAccessObject - createTable(): Starting the attempt to create the entity in the database.");
-            getConnectionDatabase().persist(sqlCommand);
+//            includeTransactionalDAO();
             isTableCreated = true;
             getConnectionDatabase().createQuery(persistenceQuery, getEntityClass());
             if(isTableCreated) {
