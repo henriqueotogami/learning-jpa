@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"infrastructure"},{"l":"model.basic"},{"l":"model.basic.delete"},{"l":"model.basic.insert"},{"l":"model.basic.newTable"},{"l":"model.basic.query"},{"l":"model.basic.update"},{"l":"model.database.jdbc"},{"l":"model.database.jpa"}]
