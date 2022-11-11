@@ -12,7 +12,7 @@ public class TestGetUser extends TestCase {
         startTest();
     }
 
-    private static void startTest() {
+    public static void startTest() {
         System.out.println("TestGetUser: BEGIN");
         PersistenceEntityManager createEntityConnection = new PersistenceEntityManager();
         try {

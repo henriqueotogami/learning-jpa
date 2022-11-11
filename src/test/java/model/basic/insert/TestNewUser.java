@@ -4,6 +4,8 @@ import junit.framework.TestCase;
 import model.basic.User;
 import model.database.jpa.PersistenceEntityManager;
 
+import java.util.Random;
+
 public class TestNewUser extends TestCase {
 
     private static boolean isSuccessInsertNewUser = false;
@@ -14,14 +16,17 @@ public class TestNewUser extends TestCase {
 
     }
 
-    private static void startTest() {
+    public static void startTest() {
         System.out.println("TestNewUser: BEGIN");
         try {
             PersistenceEntityManager createEntityConnection = new PersistenceEntityManager();
             createEntityConnection.createConnection();
 
+            Random random = new Random();
+            final long randomID = (long) random.nextInt(100);
+
             User newUser = new User("VICTOR Otogami", "h-otogami@icloud.com");
-            newUser.setId(2L);
+            newUser.setId(randomID);
 
             createEntityConnection.getConnectionDatabase().getTransaction().begin();
             createEntityConnection.getConnectionDatabase().persist(newUser);

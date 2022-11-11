@@ -16,7 +16,7 @@ public class CreateTableProduct extends TestCase {
         startTest();
     }
 
-    private static void startTest() throws SQLException {
+    public static void startTest() throws SQLException {
         System.out.println("CreateTableProduct: BEGIN");
         Connection factoryConnection = DatabaseConnectivityManager.getConnection();
         try {

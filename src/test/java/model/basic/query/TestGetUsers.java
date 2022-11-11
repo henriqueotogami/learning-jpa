@@ -16,12 +16,20 @@ public class TestGetUsers extends TestCase {
     private static final String DOTTED_LINE = "------------------------------------------------------------";
     private static final char NEW_LINE = '\n';
 
+    private static int databaseStorageUsers;
+
+    public static int getDatabaseStorageUsers() { return databaseStorageUsers; }
+
+    public static void setDatabaseStorageUsers(int databaseStorageUsers) {
+        TestGetUsers.databaseStorageUsers = databaseStorageUsers;
+    }
+
     public static void main(String[] args) {
 
         startTest();
     }
 
-    private static void startTest() {
+    public static int startTest() {
         System.out.println("TestGetUsers: BEGIN");
         PersistenceEntityManager createEntityConnection = new PersistenceEntityManager();
         try {
@@ -42,6 +50,7 @@ public class TestGetUsers extends TestCase {
             System.out.println(DOTTED_LINE + NEW_LINE);
             System.out.println("TestGetUsers: END");
         }
+        return getDatabaseStorageUsers();
     }
 
     /**
@@ -61,6 +70,7 @@ public class TestGetUsers extends TestCase {
                 System.out.println("User: " + user.getName());
                 System.out.println("ID: " + user.getId());
             }
+            setDatabaseStorageUsers(answerQueryUsers.size());
             isSuccessQueryOne = (answerQueryUsers.size() > 0);
         } catch (final Exception exception) {
             exception.printStackTrace();
@@ -89,6 +99,7 @@ public class TestGetUsers extends TestCase {
                 System.out.println("User: " + user.getName());
                 System.out.println("ID: " + user.getId());
             }
+            setDatabaseStorageUsers(answerQueryUsers.size());
             isSuccessQueryTwo = (answerQueryUsers.size() > 0);
         } catch ( final Exception exception) {
             exception.printStackTrace();

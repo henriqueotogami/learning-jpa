@@ -14,7 +14,7 @@ public class TestNewProduct extends TestCase {
         startTest();
     }
 
-    private static void startTest() {
+    public static void startTest() {
         System.out.println("TestNewProduct: BEGIN");
         final DataAccessObject<Product> dataAccessObject = new DataAccessObject<Product>(Product.class);
         try {

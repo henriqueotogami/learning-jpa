@@ -16,7 +16,7 @@ public class TestGetProducts extends TestCase {
         startTest();
     }
 
-    private static void startTest() {
+    public static void startTest() {
         System.out.println("TestGetProducts: BEGIN");
         try {
             final ProductDAO productDAO = new ProductDAO();

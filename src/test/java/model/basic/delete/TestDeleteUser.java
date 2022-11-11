@@ -2,6 +2,7 @@ package model.basic.delete;
 
 import junit.framework.TestCase;
 import model.basic.User;
+import model.basic.query.TestGetUsers;
 import model.database.jpa.PersistenceEntityManager;
 
 public class TestDeleteUser extends TestCase {
@@ -13,14 +14,16 @@ public class TestDeleteUser extends TestCase {
 
     }
 
-    private static void startTest() {
+    public static void startTest() {
         System.out.println("TestDeleteUser - main(): BEGIN");
         final PersistenceEntityManager createEntityConnection = new PersistenceEntityManager();
         try {
 
+            final int databaseStorageUser = TestGetUsers.startTest();
             createEntityConnection.createConnection();
-
-            final User targetUserToDelete = createEntityConnection.getConnectionDatabase().find(User.class, 3L);
+            final long randomPrimaryKey = (long) (Math.random() * (databaseStorageUser-1));
+            System.out.println("randomPrimaryKey" + randomPrimaryKey);
+            final User targetUserToDelete = createEntityConnection.getConnectionDatabase().find(User.class, randomPrimaryKey);
             System.out.println("Old user: " + targetUserToDelete.getName() + " | ID: " + targetUserToDelete.getId());
             System.out.println("Old e-mail: " + targetUserToDelete.getEmail());
 

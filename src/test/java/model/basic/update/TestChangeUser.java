@@ -14,22 +14,25 @@ public class TestChangeUser extends TestCase {
         startTest();
     }
 
-    private static void startTest() {
+    public static void startTest() {
         System.out.println("TestChangeUser - BEGIN");
         try {
             System.out.println("TestChangeUser - Insert the option to update (1 | 2 | 3): ");
             Scanner userTyped = new Scanner(System.in);
-            switch (userTyped.nextInt()) {
-                case 1:
-                    firstOptionToUpdate();
-                    break;
-                case 2:
-                    secondOptionToUpdate();
-                    break;
-                case 3:
-                    thirdOptionToUpdate();
-                    break;
-            }
+//            switch (userTyped.nextInt()) {
+//                case 1:
+//                    firstOptionToUpdate();
+//                    break;
+//                case 2:
+//                    secondOptionToUpdate();
+//                    break;
+//                case 3:
+//                    thirdOptionToUpdate();
+//                    break;
+//            }
+            firstOptionToUpdate();
+            secondOptionToUpdate();
+            thirdOptionToUpdate();
         } catch (final Exception exception) {
             exception.printStackTrace();
         } finally {
