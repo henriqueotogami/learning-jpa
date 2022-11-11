@@ -18,63 +18,82 @@ public class TestGetUsers extends TestCase {
 
     public static void main(String[] args) {
 
+        startTest();
+    }
+
+    private static void startTest() {
         System.out.println("TestGetUsers: BEGIN");
         PersistenceEntityManager createEntityConnection = new PersistenceEntityManager();
-        createEntityConnection.createConnection();
+        try {
+            createEntityConnection.createConnection();
 
-        executeQueryOne(createEntityConnection.getConnectionDatabase());
-        System.out.println(DOTTED_LINE + NEW_LINE);
-        System.out.println(DOTTED_LINE);
-        executeQueryTwo(createEntityConnection.getConnectionDatabase());
+            executeQueryOne(createEntityConnection.getConnectionDatabase());
+            System.out.println(DOTTED_LINE + NEW_LINE);
+            System.out.println(DOTTED_LINE);
+            executeQueryTwo(createEntityConnection.getConnectionDatabase());
 
-        assertEquals(isSuccessQueryOne, isSuccessQueryTwo);
-        System.out.println(NEW_LINE + DOTTED_LINE);
-        System.out.println("TestGetUsers: User query performed SUCCESSFULLY.");
-        System.out.println(DOTTED_LINE + NEW_LINE);
-
-        createEntityConnection.closeConnection();
-        System.out.println("TestGetUsers: END");
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            assertEquals(isSuccessQueryOne, isSuccessQueryTwo);
+            createEntityConnection.closeConnection();
+            System.out.println(NEW_LINE + DOTTED_LINE);
+            System.out.println("TestGetUsers: User query performed SUCCESSFULLY.");
+            System.out.println(DOTTED_LINE + NEW_LINE);
+            System.out.println("TestGetUsers: END");
+        }
     }
 
     /**
-     *
-     * @param databaseConnected
+     * Executa a consulta da quantidade de usuários registrados no banco de dados, tratando o retorno utilizando a
+     * interface de consultas de persistência.
+     * @param databaseConnected Instância do banco de dados conectado.
      */
     private static void executeQueryOne(final EntityManager databaseConnected) {
         System.out.println("TestGetUsers - executeQueryOne(): BEGIN");
-        final String javaPersistenceQueryLanguage = "SELECT user FROM User user";
-        final TypedQuery<User> answerQuery = databaseConnected.createQuery(javaPersistenceQueryLanguage, User.class);
-        answerQuery.setMaxResults(5);
+        try {
+            final String javaPersistenceQueryLanguage = "SELECT user FROM User user";
+            final TypedQuery<User> answerQuery = databaseConnected.createQuery(javaPersistenceQueryLanguage, User.class);
+            answerQuery.setMaxResults(5);
 
-        final List<User> answerQueryUsers = answerQuery.getResultList();
-        for(User user: answerQueryUsers) {
-            System.out.println("User: " + user.getName());
-            System.out.println("ID: " + user.getId());
+            final List<User> answerQueryUsers = answerQuery.getResultList();
+            for (User user : answerQueryUsers) {
+                System.out.println("User: " + user.getName());
+                System.out.println("ID: " + user.getId());
+            }
+            isSuccessQueryOne = (answerQueryUsers.size() > 0);
+        } catch (final Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            System.out.println("TestGetUsers - executeQueryOne(): END");
         }
-        isSuccessQueryOne = (answerQueryUsers.isEmpty() != false);
-        System.out.println("TestGetUsers - executeQueryOne(): END");
     }
 
     /**
-     *
-     * @param databaseConnected
+     * Executa a consulta da quantidade de usuários registrados no banco de dados, tratando o retorno utilizando a
+     * interface de lista de objetos da api do Java.
+     * @param databaseConnected Instância do banco de dados conectado.
      */
     private static void executeQueryTwo(final EntityManager databaseConnected) {
         final String thisClassName = TestGetUsers.class.getName();
         final String thisMethodName = TestGetUsers.class.getDeclaredMethods()[2].getName();
         System.out.println(thisClassName + " - " + thisMethodName + "(): BEGIN");
+        try {
+            final String javaPersistenceQueryLanguage = "SELECT user FROM User user";
+            final List<User> answerQueryUsers = databaseConnected
+                    .createQuery(javaPersistenceQueryLanguage, User.class)
+                    .setMaxResults(5)
+                    .getResultList();
 
-        final String javaPersistenceQueryLanguage = "SELECT user FROM User user";
-        final List<User> answerQueryUsers = databaseConnected
-                                        .createQuery(javaPersistenceQueryLanguage, User.class)
-                                        .setMaxResults(5)
-                                        .getResultList();
-
-        for(User user: answerQueryUsers) {
-            System.out.println("User: " + user.getName());
-            System.out.println("ID: " + user.getId());
+            for (User user : answerQueryUsers) {
+                System.out.println("User: " + user.getName());
+                System.out.println("ID: " + user.getId());
+            }
+            isSuccessQueryTwo = (answerQueryUsers.size() > 0);
+        } catch ( final Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            System.out.println(thisClassName + " - " + thisMethodName + "(): END");
         }
-        isSuccessQueryTwo = (answerQueryUsers.isEmpty() != false);
-        System.out.println(thisClassName + " - " + thisMethodName + "(): END");
     }
 }
