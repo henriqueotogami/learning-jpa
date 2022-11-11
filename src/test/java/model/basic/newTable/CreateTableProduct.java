@@ -1,28 +1,42 @@
 package model.basic.newTable;
 
+import junit.framework.TestCase;
 import model.database.jdbc.DatabaseConnectivityManager;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CreateTableProduct {
+public class CreateTableProduct extends TestCase {
+
+    private static boolean isSuccessCreateTableProduct = false;
 
     public static void main(String[] args) throws SQLException {
 
+        startTest();
+    }
+
+    private static void startTest() throws SQLException {
+        System.out.println("CreateTableProduct: BEGIN");
         Connection factoryConnection = DatabaseConnectivityManager.getConnection();
-        final String createTableSqlCommand =
-                "CREATE TABLE IF NOT EXISTS table_product ("
-                        + "product_id INT AUTO_INCREMENT PRIMARY KEY,"
-                        + "product_name VARCHAR(200) NOT NULL,"
-                        + "product_price DOUBLE(11,2) NOT NULL"
-                        + ")";
+        try {
+            final String createTableSqlCommand =
+                    "CREATE TABLE IF NOT EXISTS table_product ("
+                            + "product_id INT AUTO_INCREMENT PRIMARY KEY,"
+                            + "product_name VARCHAR(200) NOT NULL,"
+                            + "product_price DOUBLE(11,2) NOT NULL"
+                            + ")";
 
+            Statement factoryStatement = factoryConnection.createStatement();
+            isSuccessCreateTableProduct = factoryStatement.execute(createTableSqlCommand);
 
-        Statement factoryStatement = factoryConnection.createStatement();
-        factoryStatement.execute(createTableSqlCommand);
-
-        System.out.println("Product table created successfully.");
-        factoryConnection.close();
+        } catch (final Exception exception){
+            exception.printStackTrace();
+        } finally {
+            assertTrue(isSuccessCreateTableProduct);
+            factoryConnection.close();
+            System.out.println("CreateTableProduct: Product table created successfully.");
+            System.out.println("CreateTableProduct: END");
+        }
     }
 }
