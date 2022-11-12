@@ -1,7 +1,8 @@
-package model.basic.insert;
+package model.basic.onetoone;
 
 import infrastructure.DataAccessObject;
 import junit.framework.TestCase;
+import model.database.jpa.PersistenceEntityManager;
 import model.onetoone.Client;
 import model.onetoone.Seat;
 
@@ -17,16 +18,16 @@ public class TestNewClientNewSeat extends TestCase {
     private static void startTest() {
         System.out.println("TestNewClientNewSeat: BEGIN");
         try {
-            final Seat seat = new Seat("16C");
-            final Client client = new Client("Ana", seat);
+             Seat seat = new Seat("16C");
+             Client client = new Client("Ana", seat);
 
-            final DataAccessObject<Object> dataAccessObject = new DataAccessObject<>();
+             DataAccessObject<Object> dataAccessObject = new DataAccessObject<>();
 
-            dataAccessObject.openTransactionalDAO()
-                    .includeTransactionalDAO(seat)
-                    .includeTransactionalDAO(client)
-                    .closeTransactionalDAO()
-                    .closeConnectionDatabase();
+             dataAccessObject.openTransactionalDAO()
+                     .includeTransactionalDAO(seat)
+                     .includeTransactionalDAO(client)
+                     .closeTransactionalDAO()
+                     .closeConnectionDatabase();
 
         } catch (final Exception exception) {
             exception.printStackTrace();
