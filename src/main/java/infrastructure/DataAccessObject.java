@@ -85,6 +85,11 @@ public class DataAccessObject<Entity> {
         return this;
     }
 
+    public Entity getStorageItemById(final Object itemId){
+        return connectionDatabase.find(entityClass, itemId);
+    }
+
+
     public List<Entity> getAllStorageItems() {
         final int defaultQuantityItems = 10;
         final int defaultItemDisplacement = 0;

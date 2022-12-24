@@ -29,9 +29,12 @@ public class TestNewClientNewSeat extends TestCase {
                      .closeTransactionalDAO()
                      .closeConnectionDatabase();
 
+                isSuccessAddNewClientAndSeat = true;
+
         } catch (final Exception exception) {
             exception.printStackTrace();
         } finally {
+            assertTrue(isSuccessAddNewClientAndSeat);
             System.out.println("TestNewClientNewSeat: END");
         }
     }
