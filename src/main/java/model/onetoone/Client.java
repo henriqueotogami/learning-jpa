@@ -1,6 +1,6 @@
 package model.onetoone;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "clients")
@@ -12,7 +12,7 @@ public class Client {
 
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "seat_id", unique = true)
     private Seat seat;
 

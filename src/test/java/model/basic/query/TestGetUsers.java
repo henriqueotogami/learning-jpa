@@ -1,7 +1,7 @@
 package model.basic.query;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import junit.framework.TestCase;
 import model.basic.User;
 import model.database.jpa.PersistenceEntityManager;
