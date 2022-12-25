@@ -3,12 +3,17 @@
              xmlns="https://jakarta.ee/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
     <persistence-unit name="course_java">
+
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
         <class>model.basic.User</class>
         <class>model.basic.Product</class>
         <class>model.onetoone.Client</class>
         <class>model.onetoone.Seat</class>
+        <class>model.onetomany.RestaurantOrder</class>
+        <class>model.onetomany.ItemFromOrder</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver"    value="com.mysql.cj.jdbc.Driver"/>
@@ -21,5 +26,7 @@
             <property name="hibernate.format_sql"   value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
+
     </persistence-unit>
+
 </persistence>

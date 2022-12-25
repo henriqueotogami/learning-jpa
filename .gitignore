@@ -27,7 +27,7 @@ hs_err_pid*
 
 # Libs
 .libs/*
-.lib/*
+.lib/
 
 # Gradle
 .gradle/*
