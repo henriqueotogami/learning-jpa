@@ -16,6 +16,8 @@
         <class>model.onetomany.ItemFromOrder</class>
         <class>model.manytomany.Uncle</class>
         <class>model.manytomany.Nephew</class>
+        <class>model.manytomany.Actor</class>
+        <class>model.manytomany.Movie</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver"    value="com.mysql.cj.jdbc.Driver"/>
