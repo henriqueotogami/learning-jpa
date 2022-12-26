@@ -1,11 +1,8 @@
 package model.onetomany;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class RestaurantOrder {
@@ -16,6 +13,9 @@ public class RestaurantOrder {
 
     @Column(nullable = false)
     private Date date;
+
+    @OneToMany(mappedBy = "restaurantOrder")
+    private List<ItemFromOrder> itemsFromOrder;
 
     public RestaurantOrder() {
         this(new Date());
@@ -33,4 +33,8 @@ public class RestaurantOrder {
     public Date getDate() { return date; }
 
     public void setDate(final Date date) { this.date = date; }
+
+    public List<ItemFromOrder> getItemsFromOrder() { return itemsFromOrder; }
+
+    public void setItemsFromOrder(final List<ItemFromOrder> itemsFromOrder) { this.itemsFromOrder = itemsFromOrder; }
 }
