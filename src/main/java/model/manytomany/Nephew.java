@@ -1,6 +1,10 @@
 package model.manytomany;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +26,6 @@ public class Nephew {
         super();
         this.name = name;
     }
-
-    public Long getId() { return id; }
-
-    public void setId(final Long id) { this.id = id; }
 
     public String getName() { return name; }
 
