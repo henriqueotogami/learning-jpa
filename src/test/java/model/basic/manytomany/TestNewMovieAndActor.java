@@ -29,6 +29,7 @@ public class TestNewMovieAndActor extends TestCase {
                 theLastDuelMovie.addActorToMovie(adamDriver);
                 opheliaMovie.addActorToMovie(daisyRiddley);
 
+
                 dataAccessMovie.includeAtomicTransactionalDAO(starWarsMovie);
 
                 isSuccessNewMovieAndActor = true;
