@@ -128,6 +128,16 @@ public class DataAccessObject<Entity> {
         return isTableCreated;
     }
 
+    public List<Entity> query(final String queryName, final Object... parameters){
+        final TypedQuery<Entity> query = getConnectionDatabase().createNamedQuery(queryName, entityClass);
+        for(int index = 0; parameters.length > index; index += 2) {
+            final String parameterKey = parameters[index].toString();
+            final Object parameterValue = parameters[index + 1];
+            query.setParameter(parameterKey, parameterValue);
+        }
+        return query.getResultList();
+    }
+
     public void closeConnectionDatabase(){
         System.out.println("DataAccessObject - Closing connection database.");
         getConnectionDatabase().close();
