@@ -18,7 +18,7 @@ public class TestGetMovies extends TestCase {
             final DataAccessObject<Movie> dataAccessMovie = new DataAccessObject<Movie>(Movie.class);
             try {
                 final List<Movie> moviesList =
-                        dataAccessMovie.query("getMoviesRatingHigherThan", "rating", 8.5);
+                        dataAccessMovie.queryAllEntities("getMoviesRatingHigherThan", "rating", 8.5);
                 for(Movie movie: moviesList){ System.out.println("TestGetMovies - Movie name: " + movie.getName()); }
                 isSuccessGetMovies = (moviesList.size() > 0);
             } catch (final Exception queryException) {

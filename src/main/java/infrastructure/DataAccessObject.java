@@ -128,7 +128,7 @@ public class DataAccessObject<Entity> {
         return isTableCreated;
     }
 
-    public List<Entity> query(final String queryName, final Object... parameters){
+    public List<Entity> queryAllEntities(final String queryName, final Object... parameters){
         final TypedQuery<Entity> query = getConnectionDatabase().createNamedQuery(queryName, entityClass);
         for(int index = 0; parameters.length > index; index += 2) {
             final String parameterKey = parameters[index].toString();
@@ -136,6 +136,11 @@ public class DataAccessObject<Entity> {
             query.setParameter(parameterKey, parameterValue);
         }
         return query.getResultList();
+    }
+
+    public Entity queryFirstEntity(final String queryName, final Object... parameters) {
+        final List<Entity> queryAllEntities = queryAllEntities(queryName, parameters);
+        return (queryAllEntities.isEmpty() ? null : queryAllEntities.get(0));
     }
 
     public void closeConnectionDatabase(){
