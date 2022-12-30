@@ -21,6 +21,9 @@
         <class>model.manytomany.Nephew</class>
         <class>model.manytomany.Actor</class>
         <class>model.manytomany.Movie</class>
+        <class>model.composition.Address</class>
+        <class>model.composition.Staff</class>
+        <class>model.composition.Supplier</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver"    value="com.mysql.cj.jdbc.Driver"/>
