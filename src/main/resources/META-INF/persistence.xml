@@ -24,6 +24,12 @@
         <class>model.composition.Address</class>
         <class>model.composition.Staff</class>
         <class>model.composition.Supplier</class>
+        <class>model.inheritance.tableperclass.Student</class>
+        <class>model.inheritance.tableperclass.ScholarshipStudent</class>
+        <class>model.inheritance.singletable.Student</class>
+        <class>model.inheritance.singletable.ScholarshipStudent</class>
+        <class>model.inheritance.joined.Student</class>
+        <class>model.inheritance.joined.ScholarshipStudent</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver"    value="com.mysql.cj.jdbc.Driver"/>
