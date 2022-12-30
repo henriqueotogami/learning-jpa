@@ -1,4 +1,4 @@
-package model.basic.manytomany;
+package model.manytomany;
 
 import infrastructure.DataAccessObject;
 import junit.framework.TestCase;

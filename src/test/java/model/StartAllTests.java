@@ -1,4 +1,4 @@
-package model.basic;
+package model;
 
 import model.basic.delete.TestDeleteUser;
 import model.basic.insert.TestNewProduct;

@@ -1,4 +1,4 @@
-package model.basic.onetomany;
+package model.onetomany;
 
 import infrastructure.DataAccessObject;
 import junit.framework.TestCase;

@@ -1,4 +1,4 @@
-package model.basic.query;
+package model.query;
 
 import infrastructure.DataAccessObject;
 import junit.framework.TestCase;

@@ -1,4 +1,4 @@
-package model.basic.onetoone;
+package model.onetoone;
 
 import infrastructure.DataAccessObject;
 import junit.framework.TestCase;
