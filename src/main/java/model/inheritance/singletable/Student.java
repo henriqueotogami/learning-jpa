@@ -1,12 +1,11 @@
-package model.inheritance.tableperclass;
+package model.inheritance.singletable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", length = 2, discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("AL") // AL = Aluno
 public class Student {
 
     @Id

@@ -1,9 +1,11 @@
-package model.inheritance.tableperclass;
+package model.inheritance.singletable;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-public class ScholarshipStudent extends Student{
+@DiscriminatorValue("AB") // AB = Aluno Bolsista
+public class ScholarshipStudent extends Student {
 
     private double scholarshipCost;
 
